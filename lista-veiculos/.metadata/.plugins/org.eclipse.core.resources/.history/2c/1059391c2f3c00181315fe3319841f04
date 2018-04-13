@@ -1,0 +1,37 @@
+angular.module("HelpApp", [])
+	.value('urlBase', http://localhost:8080/listaVeiculos/rest/veiculos/)
+	.controller("VeiculoController", function($http) {
+		var self = this;
+		self.usuario = "Fabio Manarin";
+		
+		self.veiculos = [];
+		self.veiculo = undefined;
+		
+		self.novo = function() {
+			self.chamado = {};
+		};
+		
+		self.salvar = function() {
+			var metodo = 'POST';
+			if (self.veiculo.id){
+				metodo = 'PUT';
+			}
+			
+			$http({
+				method: metodo, url: urlBase + 'veiculos/', data: self.veiculo
+			}).then(function successCallback(response) {
+				self.atualizarTabela();
+			}, function errorCallback(response) {
+				self.ocorreuErro();
+			});
+		};
+		
+		self.alterar = function(veiculo) {
+			this.veiculo = veiculo;
+		};
+		
+		self.deletar = function() {
+			
+		};
+		
+	});

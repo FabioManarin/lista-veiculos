@@ -1,0 +1,79 @@
+<!doctype html>
+<html data-ng-app="appVeiculos">
+<head>
+<title>Cadastro de Veiculos</title>
+<meta charset="utf-8">
+<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+<script src="lib/angular-1.5.6.js"></script>
+<script src="lib/jquery.js"></script>
+
+<script type="text/javascript" src="node_modules/lodash/lodash.min.js"></script>
+<script type="text/javascript" src="node_modules/restangular/src/restangular.js"></script>
+
+<script src="js/bootstrap.min.js"></script>
+<script src="js/veiculos.js"></script>
+</head>
+<body>
+	<div class="container" data-ng-controller="controllerVeiculos">
+		<div class="row">
+			<div class="page-header">
+				<h1>Lista de Veículos</h1>
+			</div>
+		</div>
+		<div class="row">
+			<form class="form-inline" name="formItem" data-ng-submit="salvar()">
+				
+				<input type="text" data-ng-model="item.modelo" placeholder="Modelo" maxlength="50" required=""> 
+				
+				<input type="tel" data-ng-model="item.ano" placeholder="Ano" max="9999" required=""> 
+				
+				<input type="text" data-ng-model="item.marca" placeholder="Marca" maxlength="50" required="">
+				
+				<select name="situacao" data-ng-model="item.situacao" required="">
+					<option value="">Situação</option>
+					<option value="Dísponivel">Dísponivel</option>
+					<option value="Reservado">Reservado</option>
+				</select> <br><br>
+								
+				<button class="btn btn-primary" type="submit">Salvar</button>
+				<button class="btn btn-danger" type="button" data-ng-click=" item = undefined">Cancelar</button>
+			</form>
+			<div class="row">
+				<div class="page-header">
+				</div>
+			</div>
+		</div>		
+		<div class="row">
+			<table id="lista-veciulos" class="table table-striped">
+				<thead>
+					<tr>
+						<th>Modelo</th>
+						<th>Ano</th>
+						<th>Marca</th>
+						<th>Situação</th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr data-ng-repeat="item in itens">
+						<td>{{ item.modelo }}</td>
+						<td>{{ item.ano }}</td>
+						<td>{{ item.marca }}</td>
+						<td>{{ item.situacao }}</td>
+						<td><button class="btn btn-primary" data-ng-click="editar(item)">editar</button></td>
+						<td><button class="btn btn-danger" data-ng-click="remover(item.id)">excluir</button></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="row">
+			<div class="page-header">
+			</div>
+		</div>
+		<div class="row"><strong>Total reservado: </strong>{{totalReservado}}</div>
+		<div class="row"><strong>Total disponivel: </strong>{{totalDisponivel}}</div>
+	</div>
+</body>
+</html>

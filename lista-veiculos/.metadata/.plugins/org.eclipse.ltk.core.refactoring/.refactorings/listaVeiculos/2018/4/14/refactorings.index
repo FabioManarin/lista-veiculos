@@ -1,0 +1,30 @@
+1522956224332	Rename compilation unit 'veiculo.java'
+1522956384154	Rename package 'br.com.java'
+1522957397802	Infer generic type arguments
+1522958512719	Rename type 'veiculoDao'
+1522959076266	Delete element
+1522959080458	Delete element
+1522959083047	Delete element
+1522959975936	Delete element
+1522959979565	Delete element
+1522960166802	Copy package
+1522960175885	Copy package
+1522960218981	Delete element
+1522960224552	Delete element
+1522960385310	Rename type 'JpaResourceBean'
+1522960706289	Rename compilation unit 'LembreteBean.java'
+1522960734791	Delete element
+1522960738095	Delete element
+1523019268291	Rename type 'JpaResourceBean'
+1523020249293	Copy file
+1523020252480	Delete element
+1523020402481	Delete element
+1523020462923	Copy file
+1523020466226	Delete element
+1523020612016	Copy folder
+1523020619852	Delete element
+1523020623021	Move 'persistence.xml' to 'META-INF'
+1523104966131	Rename package 'br.com.java.restService'
+1523104980345	Delete element
+1523105016750	Rename package 'br.com.java.model'
+1523105615778	Rename type 'PessoaService'

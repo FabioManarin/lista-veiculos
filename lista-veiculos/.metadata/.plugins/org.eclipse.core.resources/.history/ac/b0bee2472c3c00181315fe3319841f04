@@ -1,0 +1,5 @@
+angular.module("HelpApp", [])
+	.controller("VeiculoController", function() {
+		var self = this;
+		self.usuario = "Fabio Manarin";
+	});

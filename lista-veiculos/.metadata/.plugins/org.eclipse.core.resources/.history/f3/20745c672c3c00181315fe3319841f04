@@ -1,0 +1,17 @@
+angular.module("HelpApp", [])
+	.controller("VeiculoController", function() {
+		var self = this;
+		self.usuario = "Fabio Manarin";
+		
+		self.veiculos = [];
+		self.veiculo = undefined;
+		
+		self.novo = function() {
+			
+		};
+		
+		self.salvar = function() {
+			
+		};
+		
+	});

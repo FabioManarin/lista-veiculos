@@ -1,0 +1,88 @@
+package br.com.java.dao;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+
+import br.com.java.bean.ResourceBean;
+import br.com.java.entity.Veiculo;
+
+public class VeiculoDao {
+
+	public void inserir(Veiculo veiculo) throws Exception {
+        EntityManager em = ResourceBean.getEntityManagerFactory().createEntityManager();
+
+        try {
+            em.getTransaction().begin();
+            em.persist(veiculo);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+
+            throw new Exception(e);
+        }finally {
+            em.close();
+        }
+    }
+	
+    public List<Veiculo> listarTodos() throws Exception {
+        EntityManager em = ResourceBean.getEntityManagerFactory().createEntityManager();
+        List<Veiculo> veiculos = null;
+
+        try {
+            veiculos = em.createQuery("from Veiculo").getResultList();
+        } catch (Exception e) {
+            throw new Exception();
+        } finally {
+            em.close();
+        }
+        return veiculos;
+    }
+    
+    public void atualizar(Veiculo veiculo) throws Exception {
+        EntityManager em = ResourceBean.getEntityManagerFactory().createEntityManager();
+
+        try {
+            em.getTransaction().begin();
+            em.merge(veiculo);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+
+            throw new Exception(e);
+        } finally {
+            em.close();
+        }
+    }
+
+    public void excluir(int id) throws Exception {
+        EntityManager em = ResourceBean.getEntityManagerFactory().createEntityManager();
+
+        try {
+            em.getTransaction().begin();
+            Veiculo veiculo = em.find(Veiculo.class, id);
+            em.remove(veiculo);
+            em.getTransaction().commit();
+        } catch (Exception e)  {
+            em.getTransaction().rollback();
+
+            throw new Exception(e);
+        } finally {
+            em.close();
+        }
+    }
+
+    public Veiculo selecionar(int id) throws Exception {
+    	Veiculo veiculo;
+
+        EntityManager em = ResourceBean.getEntityManagerFactory().createEntityManager();
+
+        try {
+            veiculo = em.find(Veiculo.class, id);
+        } finally {
+            em.close();
+        }
+        return veiculo;
+    }
+
+}

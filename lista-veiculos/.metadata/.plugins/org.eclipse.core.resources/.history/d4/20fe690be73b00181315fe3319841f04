@@ -1,0 +1,5 @@
+angular
+     .module('HelloWorldApp', [])
+     .controller('AppCtrl', function AppCtrl($scope){
+      // ...
+     });

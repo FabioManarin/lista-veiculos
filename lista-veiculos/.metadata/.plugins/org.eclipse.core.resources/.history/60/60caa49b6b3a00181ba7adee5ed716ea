@@ -1,0 +1,59 @@
+package br.com.java.rest;
+
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
+import br.com.java.dao.VeiculoDao;
+import br.com.java.entity.Veiculo;
+
+@Path("/veiculos")
+public class VeiculoService {
+
+	private VeiculoDao veiculoDao;
+	
+	@PostConstruct
+	private void init() {
+		veiculoDao = new VeiculoDao();
+	}
+	
+	@GET
+	@Path("/list")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Veiculo> listarVeiculo() {
+		List<Veiculo> lista = null;
+		try {
+			lista = veiculoDao.listarTodos();
+		} catch (Exception e){
+			e.printStackTrace();
+			e.getMessage();
+		}
+		
+		return lista;
+	}
+	
+	@POST
+	@Path("/add")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
+	public String addVeiculo(Veiculo veiculo) {
+		String msg = "";
+		
+		System.out.println(veiculo.getModelo());
+		
+		try {
+			veiculoDao.inserir(veiculo);
+			msg = "Veiculo add com sucesso";
+		} catch (Exception e){
+			msg = "Erro ao add a nota";
+			e.printStackTrace();
+		}
+		return msg;
+	}
+}
